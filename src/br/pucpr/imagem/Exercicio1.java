@@ -7,9 +7,22 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Resolução do exercício 1 da aula 2
+ * Exercicio 1 - Aula 2
+ * --------------------
+ * Este esse exercício propõe a construção de uma função chamada convolve, que realiza a aplicação de um kernel sobre
+ * a imagem. O kernel é um array de 3x3 floats.
+ *
+ * Além disso, é necessário também criar funções para aplicação dos filtros de bordas, prewitt e laplace. Nesses
+ * filtros, é necessário utilizar dois kernels diferentes e combiná-los com uma fórmula de distância. Este exemplo
+ * implementa a função border, que aplica essa fórmula.
+ *
+ * Todos os kernels da aula são usados no exemplo, exatamente como o aluno deveria fazer. Altere no método main o
+ * caminho da pasta de imagem.
  */
 public class Exercicio1 {
+    /** Caminho para a a pasta de imagens da aula */
+    public static final File PATH = new File("/Users/vinigodoy/img");
+
     /**
      * Garante que o valor do pixel estará entre 0 e 255.
      */
@@ -36,6 +49,10 @@ public class Exercicio1 {
     }
 
 
+    /**
+     * Realiza a operação de convolução, isto é a aplicação do kernel sobre a imagem. Para cada pixel da imagem,
+     * é calculada uma média ponterada entre ele e seus vizinhos. O kernel contém os pesos dessa média.
+     */
     public BufferedImage convolve(BufferedImage img, float[][] kernel) {
         //Cria a imagem de saída
         BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -112,9 +129,10 @@ public class Exercicio1 {
         return out;
     }
 
+    /**
+     * Executa os filtros.
+     */
     public void run() throws IOException {
-        File PATH = new File("/Users/vinigodoy/img");
-
         //Carrega as imagens da tartaruga e do lagarto
         BufferedImage turtle = ImageIO.read(new File(PATH, "cor/turtle.jpg"));
         BufferedImage lizard = ImageIO.read(new File(PATH, "gray/lizard.jpg"));
@@ -176,7 +194,7 @@ public class Exercicio1 {
                 { 1.0f,  1.0f,  1.0f}
         };
 
-        //Aplica sobel com a tartaruga
+        //Aplica Sobel com a tartaruga
         BufferedImage imgGX = convolve(turtle, sobelGx);
         BufferedImage imgGY = convolve(turtle, sobelGy);
         salvar(imgGX, "turtleSobelGx");
@@ -184,7 +202,7 @@ public class Exercicio1 {
 
         salvar(border(imgGX, imgGY), "turtleSobel");
 
-        //Aplica sobel com o lagarto
+        //Aplica Sobel com o lagarto
         imgGX = convolve(lizard, sobelGx);
         imgGY = convolve(lizard, sobelGy);
         salvar(imgGX, "lizardSobelGx");
@@ -202,7 +220,7 @@ public class Exercicio1 {
                 { 0.0f,  0.0f,  0.0f},
                 { 1.0f,  2.0f,  1.0f}
         };
-        //Aplica prewitt com a tartaruga
+        //Aplica Prewitt com a tartaruga
         imgGX = convolve(turtle, prewittGx);
         imgGY = convolve(turtle, prewittGy);
         salvar(imgGX, "turtlePrewittGx");
@@ -210,7 +228,7 @@ public class Exercicio1 {
 
         salvar(border(imgGX, imgGY), "turtlePrewitt");
 
-        //Aplica prewitt com o lagarto
+        //Aplica Prewitt com o lagarto
         imgGX = convolve(lizard, prewittGx);
         imgGY = convolve(lizard, prewittGy);
         salvar(imgGX, "lizardPrewittGx");
