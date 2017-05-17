@@ -11,6 +11,9 @@ import java.io.IOException;
  * --------------------
  * Neste exercício, utilizamos a conversão do HSV para fazer algumas brincadeiras na imagem (aumentar o brilho,
  * a saturação e modificar o matiz).
+ *
+ * Os valores de H, S e V, no Java, são codificados no intervalo de 0 até 1. No java, o componente V também é chamado
+ * de B (Brightness).
  */
 public class Exercicio2 {
     /** Caminho para a a pasta de imagens da aula. Modifique no Exercicio1. */
