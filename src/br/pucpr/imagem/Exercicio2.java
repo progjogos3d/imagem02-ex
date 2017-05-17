@@ -142,8 +142,8 @@ public class Exercicio2 {
         BufferedImage puppy = ImageIO.read(new File(PATH, "cor/puppy.jpg"));
 
         //Brilho
-        salvar(bright(puppy, 2.0f), "puppyBrightMore");
-        salvar(bright(puppy, 0.2f), "puppyBrightLess");
+        salvar(bright(puppy, 1.5f), "puppyBrightMore");
+        salvar(bright(puppy, 0.5f), "puppyBrightLess");
 
         //Saturação
         salvar(saturate(puppy, 1.5f), "puppySaturateMore");
